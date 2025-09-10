@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Tricks!</title>
+</head>
+
+<body>
+    <p onclick="makeGreen()">xBREAKxDOWMx</p>
+
+    <script>
+        const dogs = [{ name: 'Snickers', age: 3 }, { name: 'Doby', age: 5 }, { name: 'lucy', age: 1 }, { name: 'poko', age: 6 }, { name: 'ruken', age: 9 }];
+
+        function makeGreen() {
+            const p = document.querySelector('p');
+            p.style.color = 'Red';
+            p.style.fontSize = '30px';
+        }
+
+        //inspect better by what happening and how in js if we are doing style or dynamic update you can check where it is happening 
+        //to see open inspect the element find it in the dom right click 'break on' and select 'attribute' modification tick
+        // debuger command and show where the thing is happening
+
+        //Regular
+        console.log('hello');
+
+        //Interpolated
+        console.log('Hello I am a %s string!', 'boo');
+        //output will be Hello I am a boo string!
+
+        //Styled
+        console.log('%c I am some great text', 'font-size:50px; background:blue; text-shadow: 10px 5px 10px red');
+
+        //Warning!
+        console.warn('Oh nooo..!!!')
+
+
+        //Error:/
+        console.error("It's an error!!!")
+
+        //Info
+        console.info('Welcome here')
+        console.info('For your information this is practice sheet of jyoti practicing with Wes Bos JS30 course');
+
+        //Testing
+        console.assert(1 === 2, 'This is showing because here is something that is not true!');
+        console.assert(2 === 2, "this won't show up");
+
+        const p = document.querySelector('p');
+        console.assert(p.classList.contains('ouch'), "That is Wrong");
+
+        //Clearing
+        console.clear();
+
+        //Viewing Dom Elements
+        console.log(p); // available property not visible
+        console.dir(p); // here all is visible all property and method 
+
+        //grouping things together
+        dogs.forEach(dog => {
+            console.groupCollapsed(`${dog.name}`); //group or groupCollapsed 
+            console.log(`This is ${dog.name}`);
+            console.log(`${dog.name} is ${dog.age} years old`);
+            console.log(`${dog.name} is ${dog.name * 10} dog years old`);
+            console.groupEnd(`${dog.name}`);
+        });
+
+        //Counting
+        console.count("JD");
+        console.count("JD");
+        console.count("JD");
+        console.count("JD");
+        console.count("JD");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("JD");
+        console.count("JD");
+        console.count("JD");
+        console.count("JD");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+        console.count("Jyoti Dercima");
+
+        //Timing
+        console.time('fetching data... ');
+        fetch('https://api.github.com/users/jyotidercima')
+            .then(data => data.json())
+            .then(data => {
+                console.timeEnd('fetching data... ');
+                console.log(data);
+            });
+
+        //there is also performance.now in the browser
+
+        //Table
+        console.table(dogs);
+
+    </script>
+</body>
+
+</html>
