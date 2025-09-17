@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object and Array - Reference VS Copy</title>
+</head>
+
+<body>
+
+    <script>
+
+        console.log("%c Working with normal Variables num and string", "font-size:20px; background:blue");
+        //normal number and string variables
+
+        let age = 100;
+        let age2 = age;
+        console.log(age, age2);
+        age = 200;
+        console.log(age, age2);
+
+        let name = "jyoti";
+        let name2 = name;
+        console.log(name, name2);
+        name = "JyotiDercima";
+        console.log(name, name2);
+
+        console.log("%c Here working with Arrays", "font-size:30px; background:blue");
+
+        //In an array
+        const players = ['abc', 'cde', 'efg', 'ghi', 'ijk'];
+        /////////////////////////////////////////////////////////////////
+        const team = players; //reference copy!!!!!!
+        console.log("trying to copy using assignment operator");
+        console.log(players, team);
+
+        team[3] = "lux";
+
+        console.log("after making changes in team[3] to lux");
+
+        console.log(players, team);
+
+        //////////////////////////////////////////////////////////////////////
+
+        console.log("using .Slice() to create copy without any arguments Team2[0] = hello");
+
+        const team2 = players.slice(); // create copy of players any change in team2 will not affect player array.
+        team2[0] = "hello";
+        console.log(team2, players);
+
+
+
+        //////////////////////////////////////////////////////////////////////
+        console.log("using array [].concat(array) to create copy Team3[2] = bolo");
+        const team3 = [].concat(players); //new array and concat the old one in 
+        team3[2] = "bolo";
+        console.log(team3, players);
+
+
+
+
+        //////////////////////////////////////////////////////////////////////
+        console.log("using ES6 Spread operator to copy team4[3] = heeee heee")
+        const team4 = [...players]; // ES6 spread
+
+        team4[3] = 'heeee heee';
+        console.log(team4, players);
+
+
+
+
+        //////////////////////////////////////////////////////////////////////
+        console.log("using Array.from(array) here team5[1] = best")
+
+        const team5 = Array.from(players);
+        team5[1] = "best";
+        console.log(team5, players);
+
+
+
+
+
+
+
+
+
+
+
+        //#################################################################################
+        console.log("%c Now working with objects", "font-size:30px; background:blue");
+        //objects
+        const person = {
+            name: 'Bheem',
+            age: 25
+        };
+        console.log("This is og person obj", person);
+
+        const captain = person;
+        console.log("After Updating using simple assignment operator both obj got updated when changed");
+        // captain.number = 99; // added new property number to the object
+
+        console.log(" This is Person obj", person);// it has updated the person object
+        console.log(" This is captain obj", captain);
+
+
+        //////////////////////////////////////////////////////////////////////
+        console.log("Copying using Object.assign({}, person, {number: 99, age:45})");
+
+        const cap2 = Object.assign({}, person, { number: 99, age: 45 });
+        console.log(" This is cap2", cap2);
+        console.log(" This is Person obj", person);
+
+        //////////////////////////////////////////////////////////////////////
+
+        console.log("Copying using spread operator {...person} and updating cap3 with number: 82")
+        const cap3 = { ...person };
+        cap3.number = 82;
+        console.log(" This is cap3", cap3);
+        console.log(" This is Person obj", person);
+
+
+        //////////////////////////////////////////////////////////////////////
+
+        console.log("%c Now working with Nested objects", "font-size:25px; background:blue");
+
+        const jd = {
+            name: 'Chota bheem',
+            age: 100,
+            social: {
+                x: '@chotabheem',
+                insta: 'chotabheem'
+            }
+        }
+        // console.clear();
+        console.log(jd);
+
+        //////////////////////////////////////////////////////////////////////
+
+        console.log("Copying using Object.assign({}, obj)");
+        const dev = Object.assign({}, jd); //only one level deep
+        //clone deep
+        dev.social.insta = "badabheem";
+        console.log(dev);
+        console.log("Copying using Object.assign({}, obj) will copy just the surface level only one level nested obj will still refer to same address and can be updated with new copy obj ");
+
+        console.log("We can use clone deep for deep cloning");
+
+        //////////////////////////////////////////////////////////////////////
+        console.log("Copying in old man technique using JSON.parse and JSON stringify to first convert array to string then parse it and store it in new varible -- this create clone of the obj");
+
+        const dev2 = JSON.parse(JSON.stringify(jd)); //not recommended
+        console.log("This is dev2 obj before change", dev2);
+        dev2.age = 67;
+        console.log("This is dev2 obj", dev2);
+        console.log("This is jd obj", jd);
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
