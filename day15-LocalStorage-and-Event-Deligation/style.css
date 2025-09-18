@@ -1,0 +1,109 @@
+html {
+    box-sizing: border-box;
+    background-image: radial-gradient(rgb(124, 224, 74), rgb(43, 183, 111), rgb(34, 152, 91), rgb(3, 65, 41));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    padding: 30px;
+    position: absolute;
+    font-size: 25px;
+    top: 10%;
+    color: rgb(13, 67, 49);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+svg {
+    fill: rgb(122, 5, 5);
+    /* background: rgba(0, 0, 0, 0.04); */
+    padding: 20px;
+    box-shadow: 1px 5px 50px 0 white;
+    border-radius: 50%;
+    width: 200px;
+    margin-bottom: 50px;
+
+}
+
+.wrapper {
+    background-color: rgba(188, 251, 230, 0.463);
+    padding: 20px;
+    border-radius: 10px;
+    border: 5px solid white;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper h2 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.tasks {
+    background-color: rgba(173, 192, 151, 0.405);
+    border-radius: 10px;
+    text-align: left;
+    padding-left: 10px;
+    list-style-type: none;
+    font-weight: 500;
+}
+
+ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+
+
+}
+
+input[name="item"] {
+    background-color: rgba(141, 238, 62, 0.358);
+    padding: 6px;
+    border-radius: 4px;
+    border: 2px solid white;
+    color: rgb(54, 1, 1);
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+
+
+}
+
+input[type="submit"] {
+    background-color: rgb(51, 188, 17);
+    padding: 6px;
+    border-radius: 4px;
+    border: 2px solid white;
+    text-align: center;
+    color: rgb(2, 30, 19);
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.tasks input {
+    display: none;
+}
+
+.tasks input+label::before {
+    content: "🚨";
+    margin-right: 10px;
+
+}
+
+.tasks input:checked+label:before {
+    content: "👍";
+}
+
+.tasks input:checked+label {
+    text-decoration: line-through;
+}
