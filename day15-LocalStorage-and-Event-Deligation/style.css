@@ -43,11 +43,17 @@ svg {
     border: 5px solid white;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .wrapper h2 {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(16, 6, 58);
+    /* background-color: rgb(255, 255, 0); */
+    text-shadow: 1px 1px 20px white;
 
 }
 
@@ -58,12 +64,14 @@ svg {
     padding-left: 10px;
     list-style-type: none;
     font-weight: 500;
+    position: relative;
+    font-size: 1rem;
 }
 
 ul li {
     padding: 10px 0;
     border-bottom: 1px solid black;
-
+    font-weight: 800;
 
 }
 
@@ -75,11 +83,12 @@ input[name="item"] {
     color: rgb(54, 1, 1);
     font-weight: 900;
     font-family: 'Courier New', Courier, monospace;
-
+    font-size: 1rem;
 
 }
 
-input[type="submit"] {
+input[type="submit"],
+button {
     background-color: rgb(51, 188, 17);
     padding: 6px;
     border-radius: 4px;
@@ -87,7 +96,13 @@ input[type="submit"] {
     text-align: center;
     color: rgb(2, 30, 19);
     font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
 
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
 }
 
 .tasks input {
@@ -104,6 +119,12 @@ input[type="submit"] {
     content: "👍";
 }
 
-.tasks input:checked+label {
-    text-decoration: line-through;
+.tasks button {
+    content: "❌";
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    background: none;
+    border: none;
+
 }

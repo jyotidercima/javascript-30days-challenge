@@ -25,11 +25,11 @@
             <circle cx="398.8" cy="273.8" r="14.1" />
         </g>
     </svg> -->
-    <!-- <h1>
+    <h1>
         <quote><i>It's not what other people believe you can do, it's what you believe.</i></quote>
-    </h1> -->
+    </h1>
     <div class="wrapper">
-        <h2>Things to Complete</h2>
+        <h2>Daily Task!</h2>
         <ul class="tasks">
             <li>Loading Tasks...</li>
         </ul>
@@ -37,9 +37,11 @@
             <input type="text" name="item" placeholder="Item Name" requierd>
             <input type="submit" value="+ Add Item">
         </form>
-        <button id="delete">Delete</button>
-        <button id="uncheck">Uncheck All</button>
-        <button id="checkall">Check All</button>
+        <div class="buttons">
+            <button id="delete">Delete</button>
+            <button id="uncheck">Uncheck All</button>
+            <button id="checkall">Check All</button>
+        </div>
     </div>
 
     <script>
@@ -80,6 +82,7 @@
                     <li>
                         <input type="checkbox" data-index=${i} id="item${i}" ${task.done ? 'checked' : ''}/> 
                         <label for="item${i}">${task.text}</label>
+                        <button class="remove" data-index=${i}>❌</button>
                     </li>
                 `
             }).join(''); //map returning a array so to set inner HTML we require string so return as a string 
@@ -111,10 +114,10 @@
 
         itemsList.addEventListener('click', toggleDone);
         itemsList.addEventListener('dblclick', (e) => {
-            if (!e.target.matches('input')) return;
-            const el = e.target;
-            const index = el.dataset.index;
-            items[index].remove();
+            console.log(e);
+            if (!e.target.matches('.remove')) return;
+            const index = e.target.dataset.index;
+            items.splice(index, 1);
             localStorage.setItem('items', JSON.stringify(items));
             populateList(items, itemsList);
         });
