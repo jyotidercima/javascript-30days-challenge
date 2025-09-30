@@ -1,0 +1,50 @@
+🔹 1. Methods / Objects We Are Using
+
+This project uses a mix of DOM APIs, Canvas APIs, and Media APIs. Here are the important ones:
+
+navigator.mediaDevices.getUserMedia()
+
+Captures live video (and/or audio) from the user’s webcam/mic.
+
+Returns a Promise → resolves with a MediaStream.
+
+video.srcObject = localMediaStream
+
+Instead of using old URL.createObjectURL() (deprecated), we assign the MediaStream directly to the <video> element’s srcObject.
+
+video.addEventListener('canplay', paintToCanvas)
+
+Runs paintToCanvas as soon as the video is ready to play.
+
+Canvas methods:
+
+canvas.getContext('2d') → lets us draw/manipulate 2D graphics.
+
+ctx.drawImage(video, 0, 0, width, height) → paints current video frame onto canvas.
+
+ctx.getImageData(x, y, w, h) → extracts pixel data as an array (Uint8ClampedArray).
+
+ctx.putImageData(pixels, 0, 0) → puts modified pixels back on canvas.
+
+canvas.toDataURL('image/jpeg') → converts the canvas image into a Base64 string (can be saved/shared).
+
+Sound and snapshots:
+
+snap.play() → plays a small “camera click” sound.
+
+document.createElement('a'), setAttribute, insertBefore → standard DOM manipulation to add new downloadable photos.
+
+🔹 2. Image Effects (Pixel Manipulation)
+
+Every pixel on the canvas is represented by 4 numbers in sequence:
+👉 [red, green, blue, alpha]
+
+So:
+
+pixels.data[i + 0] → Red
+
+pixels.data[i + 1] → Green
+
+pixels.data[i + 2] → Blue
+
+pixels.data[i + 3] → Alpha (transparency)
