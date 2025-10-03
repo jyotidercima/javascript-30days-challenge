@@ -1,0 +1,13 @@
+{
+  "name": "day20-speech-recognition",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "start --server --files'*.css, *.html, *.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

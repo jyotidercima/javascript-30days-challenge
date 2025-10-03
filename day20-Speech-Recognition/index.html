@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speach Detection</title>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        body {
+            background-color: aquamarine;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+        .words {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: beige;
+            border-radius: 5px;
+            box-shadow: 10px 10px 5px black;
+            padding: 1rem;
+            position: relative;
+            line-height: 3rem;
+        }
+
+        p {
+            margin: 0 0 3rem 3rem;
+        }
+
+        .words::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            top: 0;
+            left: 30px;
+            bottom: 0;
+            border: 1px solid gray;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="words" contenteditable>
+
+    </div>
+
+    <script>
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        const recognition = new SpeechRecognition();
+        recognition.interimResults = true;
+
+        let p = document.createElement('p');
+        const words = document.querySelector('.words');
+        words.appendChild(p);
+
+        recognition.addEventListener('result', e => {
+            // console.log(e.results);
+            const transcript = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+
+            p.textContent = transcript;
+            if (e.results[0].isFinal) {
+                p = document.createElement('p');
+                words.appendChild(p);
+            }
+
+            switch (true) {
+                case transcript.includes('unicorn'):
+                    console.log('where are UNICORN????????????');
+
+                    break;
+                case transcript.includes('party'):
+                    console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+
+                    break;
+                case transcript.includes('jyoti'):
+                    console.log('🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩');
+
+                    break;
+                case transcript.includes('JavaScript'):
+                    console.log('😎😎😎😎😎😎😎😎😎😎😎😎😎😎😎');
+
+                    break;
+                case transcript.includes('thank you'):
+                    console.log('⊹₊ ⋆🎉💐🎉 ₊˚⊹⊹₊ ⋆🎉💐🎉 ₊˚⊹⊹₊ ⋆🎉💐🎉 ₊˚⊹');
+
+                    break;
+            }
+
+
+
+            // if (transcript.includes('unicorn')) {
+            //     console.log('UNICORN');
+            // }
+            // if (transcript.includes('days')) {
+            //     console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+            // }
+            // if (transcript.includes('jyoti')) {
+            //     console.log('🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩🤩');
+            // }
+            // if (transcript.includes('Javascript')) {
+            //     console.log('😎😎😎😎😎😎😎😎😎😎😎😎😎😎😎');
+            // }
+            // if (transcript.includes('thank you')) {
+            //     console.log('⊹₊ ⋆🎉💐🎉 ₊˚⊹⊹₊ ⋆🎉💐🎉 ₊˚⊹⊹₊ ⋆🎉💐🎉 ₊˚⊹');
+            // }
+
+
+            // console.log(transcript);
+        });
+
+        recognition.addEventListener('end', () => recognition.start());
+
+        recognition.start();
+
+
+    </script>
+
+</body>
+
+</html>
