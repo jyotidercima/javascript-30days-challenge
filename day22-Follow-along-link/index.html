@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Along Link</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="http://" target="_blank">Home</a></li>
+            <li><a href="http://" target="_blank">Order Status</a></li>
+            <li><a href="http://" target="_blank">Tweets</a></li>
+            <li><a href="http://" target="_blank">Read Out</a></li>
+            <li><a href="http://" target="_blank">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="wrapper">
+        <p>Lorem ipsum dolor sit amet <a href="">consectetur</a> adipisicing elit. Minus praesentium fugit, corrupti
+            laudantium soluta
+            assumenda alias repellendus tempora quibusdam earum reprehenderit, cum aliquam laborum debitis <a
+                href="">totam</a> dolor
+            ipsam provident nemo est. Provident.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus <a href=""></a>praesentium fugit, corrupti
+            laudantium soluta
+            assumenda alias <a href="">repellendus</a> tempora quibusdam earum reprehenderit, cum aliquam laborum
+            debitis totam dolor
+            ipsam provident nemo est. <a href="">Provident</a>.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus praesentium <a href="">fugit</a>, corrupti
+            laudantium soluta
+            assumenda alias repellendus tempora <a href="">quibusdam</a> earum reprehenderit, cum aliquam laborum
+            debitis totam dolor
+            ipsam <a href="">provident</a> nemo est. Provident.</p>
+        <p>Lorem ipsum dolor sit amet consectetur <a href="">adipisicing</a> elit. Minus praesentium fugit, corrupti
+            laudantium soluta
+            assumenda alias repellendus tempora quibusdam earum <a href="">reprehenderit</a>, cum aliquam laborum
+            debitis totam dolor
+            ipsam provident <a href="">nemo</a> est. Provident.</p>
+        <p>Lorem ipsum <a href="">dolor</a> sit amet consectetur adipisicing elit. Minus praesentium fugit, corrupti
+            laudantium soluta
+            assumenda alias repellendus tempora quibusdam earum reprehenderit, cum <a href="">aliquam</a> laborum
+            debitis totam dolor
+            <a href="">ipsam</a> provident nemo est. Provident.
+        </p>
+
+    </div>
+
+    <script>
+        const triggers = document.querySelectorAll("a"); //selecting all the anchor tags
+        const highlight = document.createElement('span');
+        highlight.classList.add('highlight');
+        document.body.append(highlight);
+
+        function highlightLink() {
+            // console.log("highlight!!");
+            // console.log(this);
+            const linkCoords = this.getBoundingClientRect();
+            console.log(linkCoords);
+            const coords = {
+                width: linkCoords.width,
+                height: linkCoords.height,
+                top: linkCoords.top + window.scrollY,
+                left: linkCoords.left + window.scrollX
+            }
+
+            highlight.style.width = `${coords.width}px`;
+            highlight.style.height = `${coords.height}px`;
+            highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+        }
+
+        triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

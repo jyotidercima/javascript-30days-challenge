@@ -53,6 +53,11 @@ button {
     margin: 10px;
 }
 
+.controls_btn {
+    display: flex;
+    flex-direction: row;
+}
+
 /*
   Strip!
 */

@@ -4,6 +4,13 @@ const ctx = canvas.getContext('2d'); //canvasRenderingContext2D - main API to dr
 const strip = document.querySelector('.strip'); //elsment to show saved photos
 const snap = document.querySelector('.snap'); //shutter sound
 
+const redfilterEffect = document.querySelector('.red_effect');
+const rgbEffect = document.querySelector('.rgbsplit_effect');
+const ghostEffect = document.querySelector('.ghost_effect');
+const greenScreenEffect = document.querySelector('.greenscreen_effect');
+const resetEffect = document.querySelector('.reset_effect');
+
+
 function getVideo() {
     navigator.mediaDevices.getUserMedia({ video: true, audio: false }) //return a promise
         .then(localMediaStream => {
@@ -18,7 +25,7 @@ function getVideo() {
         });
 }
 
-
+let currentEffect = null;
 function paintToCanvas() {
     const width = video.videoWidth;
     const height = video.videoHeight;
@@ -35,23 +42,17 @@ function paintToCanvas() {
         // console.log(pixels);
         // debugger;
 
+        if (currentEffect === 'red') {
+            pixels = redEffect(pixels);
+        } else if (currentEffect === 'rgb') {
+            pixels = rgbSplit(pixels);
+        } else if (currentEffect === 'ghost') {
+            ctx.globalAlpha = 0.1;
+        } else if (currentEffect === 'green') {
+            pixels = greenScreen(pixels);
+        }
 
-        //red effect
-        // pixels = redEffect(pixels);
-
-        // //rgbsplit effect
-        pixels = rgbSplit(pixels);
-
-        ctx.globalAlpha = 0.1; //ghosting effect 
-
-        //green screen effect
-        // pixels = greenScreen(pixels);
-
-        //put them back to canvas.
         ctx.putImageData(pixels, 0, 0);
-
-
-
 
     }, 16);
 }
@@ -119,4 +120,16 @@ function greenScreen(pixels) {
 
 getVideo();
 
+function resetEffectp() {
+    ctx.globalAlpha = 1;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+}
+
 video.addEventListener('canplay', paintToCanvas); //canplay fires when video has enough data to start playing
+
+redfilterEffect.addEventListener('click', () => currentEffect = 'red');
+rgbEffect.addEventListener('click', () => currentEffect = 'rgb');
+ghostEffect.addEventListener('click', () => currentEffect = 'ghost');
+greenScreenEffect.addEventListener('click', () => currentEffect = 'green');
+
+resetEffect.addEventListener('click', resetEffectp);
